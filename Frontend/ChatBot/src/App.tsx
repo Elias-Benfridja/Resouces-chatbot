@@ -9,39 +9,52 @@ const App = () => {
     const [error, setError] = useState<string | null>(null);
 
     return (
-        <div className="min-h-screen bg-gray-50 p-8">
-            <h1 className="text-3xl font-bold text-center text-blue-600 mb-8">
-                STEM Resource Finder
-            </h1>
-            <div className="flex gap-8 max-w-7xl mx-auto">
+        <div className="min-h-screen flex flex-col bg-gray-100">
 
-                {/* Left — Search Form */}
-                <div className="w-1/4 flex flex-col gap-4">
+            {/* Navbar */}
+            <nav className="bg-gray-900 text-white px-6 py-4">
+                <h1 className="text-lg font-semibold tracking-wide">STEM Resource Finder</h1>
+            </nav>
+
+            <div className="flex flex-1">
+
+                {/* Left Sidebar */}
+                <aside className="w-64 bg-white border-r border-gray-200 p-6 flex flex-col gap-6 min-h-screen text-center">
+                    <div>
+                        <h2 className="text-lg font-bold text-gray-800">Resource Filter</h2>
+                        <p className="text-sm text-gray-400 mt-1">Find your next STEM resource</p>
+                    </div>
+
                     <SearchForm
                         onResults={setResources}
                         onLoading={setLoading}
                         onError={setError}
                     />
+
                     {error && (
                         <p className="text-red-500 text-sm">{error}</p>
                     )}
                     {loading && (
-                        <p className="text-gray-400 text-sm animate-pulse">
-                            Fetching resources...
-                        </p>
+                        <p className="text-blue-400 text-sm animate-pulse">Fetching resources...</p>
                     )}
-                </div>
+                </aside>
 
-                {/* Right — Results */}
-                <div className="w-3/4">
+                {/* Main Content */}
+                <main className="flex-1 p-8">
                     {resources.length === 0 && !loading ? (
-                        <p className="text-gray-400 text-center mt-20">
-                            Search for a topic to get started
-                        </p>
+                        <div className="flex flex-col items-center justify-center h-full text-center gap-4">
+                            <div className="bg-blue-50 p-6 rounded-2xl">
+                                <span className="text-5xl">🔬</span>
+                            </div>
+                            <h2 className="text-2xl font-bold text-gray-700">Ready to discover?</h2>
+                            <p className="text-gray-400 max-w-sm">
+                                Search for a topic to get started. Resources are sourced via AI across videos, courses, papers and more.
+                            </p>
+                        </div>
                     ) : (
                         <ResourceList resources={resources} />
                     )}
-                </div>
+                </main>
 
             </div>
         </div>
