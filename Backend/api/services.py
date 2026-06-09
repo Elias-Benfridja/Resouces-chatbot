@@ -52,7 +52,11 @@ def get_resources(topic: str, language: str) -> list:
         raise Exception(f"Gemini API error: {str(e)}")
     # Clean and parse response
     raw = response.text.strip()
-    raw = raw.removeprefix('```json').removeprefix('```').removesuffix('```').strip()
+
+    start = raw.index('[')
+    end = raw.rindex(']') + 1
+    raw = raw[start:end]
+
     resources = json.loads(raw)
     # Save cache
     Query.objects.create(
