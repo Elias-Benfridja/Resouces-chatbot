@@ -1,8 +1,8 @@
 import axios from "axios";
 import type { Resource, Rating, RatingStats } from "../types/types";
-import type { list } from "postcss";
 
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+
+const API_BASE_URL = 'https://resouces-search-engine-production.up.railway.app/api';
 
 export const fetchResources = async (
   topic: string,
