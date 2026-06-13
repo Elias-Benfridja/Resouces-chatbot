@@ -2,7 +2,7 @@ import axios from "axios";
 import type { Resource, Rating, RatingStats } from "../types/types";
 
 
-const API_BASE_URL = 'https://resouces-search-engine-production.up.railway.app/';
+const API_BASE_URL = 'https://resouces-search-engine-production.up.railway.app';
 
 export const fetchResources = async (
   topic: string,
